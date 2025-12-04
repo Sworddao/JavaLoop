@@ -1,52 +1,61 @@
 import java.util.Scanner;
 
-public class FixedDepositNIB{
+public class FixedDeposit{
     public static void main(String[] args){
         
         Scanner scan = new Scanner(System.in);
         
         while(true){
             
-            System.out.print("Enter deposit amount(over 1000): ");
+            System.out.println("Enter deposit amount (over 1000) : ");
             double P = scan.nextDouble();
+            
             if(P < 1000){
-                break;
+                continue;
             }
             
-            System.out.print("Enter annual interest rate(8%-12%): " );
+            System.out.println("Enter annual interest rate (8-12%): ");
             double annualRate = scan.nextDouble();
             
-            System.out.print("Enter duration in years(year 1 to 5): ");
+            if(annualRate > 12 || annualRate < 8){
+                continue;
+            }
+            
+            System.out.println("Enter duration in years, less than 5: ");
             int year = scan.nextInt();
             
-            //converting years to months..
+            if(year > 5 || year < 1){
+                continue;
+            }
             
             int month = year * 12;
             double monthlyRate = annualRate / 12 / 100;
             
-            // calculating maturing fees
-            
-            double A = P * Math.pow(1 + monthlyRate, month);
+            double A = P * Math.pow(1 + monthlyRate, month); 
             
             double feeRate = 0.005;
-            double fee = A * feeRate;
+            double fee = P * feeRate;
             double finalAmount = A - fee;
+            
+            scan.nextLine();
             
             System.out.println("\n-----Fixed Deposit-------");
             System.out.println("Principal amount(P): " + P);
             System.out.println("Maturity amount(A): " + A);
             System.out.println("Processing Fee: " + fee);
-            System.out.println("Final Amount: " + finalAmount);
+            System.out.println("Final Amount: " + finalAmount);   
             
-            System.out.println("\n Add another Fixed Deposit ? ");
-            System.out.println("1. Yes ");
-            System.out.println("2. No ");
-            int response = scan.nextInt();
+            System.out.println("Do you want to continue:(yes/no)?");
+            String response = scan.nextLine();
             
-            if(response != 1){
+            if(!response.equalsIgnoreCase("yes")){
                 break;
             }
+            
+            
         }
-        System.out.println("Exiting...");
+        
+        
+        
     }
 }
