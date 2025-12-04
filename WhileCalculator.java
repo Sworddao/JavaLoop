@@ -4,11 +4,8 @@ public class WhileCalculator {
     public static void main(String[] args) {
 
         Scanner scan = new Scanner(System.in);
-        
-        int choice = 1;
 
-        while (choice == 1) {
-
+        while (true) {
             System.out.println("Enter two numbers:");
             int a = scan.nextInt();
             int b = scan.nextInt();
@@ -20,6 +17,7 @@ public class WhileCalculator {
             System.out.println("4. Divide");
 
             int op = scan.nextInt();
+            scan.nextLine();
 
             switch (op) {
                 case 1: System.out.println("Result = " + (a + b)); break;
@@ -29,10 +27,13 @@ public class WhileCalculator {
                 default: System.out.println("Invalid choice!");
             }
 
-            System.out.println("\nEnter 1 to continue or 0 to exit:");
-            choice = scan.nextInt();
+            System.out.println("\nDo you want to continue? ");
+            String choice = scan.nextLine();
+
+            if(!choice.equals("yes")){
+                break;
+            }
         }
 
-        System.out.println("Calculator closed.");
     }
 }
