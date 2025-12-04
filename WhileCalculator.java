@@ -30,7 +30,7 @@ public class WhileCalculator {
             System.out.println("\nDo you want to continue? ");
             String choice = scan.nextLine();
 
-            if(!choice.equals("yes")){
+            if(!choice.equalsIgnoreCase("yes")){
                 break;
             }
         }
